@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { Download } from "lucide-react";
+import { Printer } from "lucide-react";
 import { toast } from "sonner";
 import type { Pesanan } from "../lib/data";
 
@@ -113,24 +114,26 @@ export function InvoiceGenerator({ pesanan }: InvoiceGeneratorProps) {
   };
 
   return (
-    <div className="flex gap-2">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={handleDownloadInvoice}
-      >
-        <Download className="size-4 mr-1" />
-        Download
-      </Button>
+<div className="flex gap-2">
+  <Button
+    variant="outline"
+    size="sm"
+    className="border-blue-500 text-blue-600 hover:bg-blue-50"
+    onClick={handleDownloadInvoice}
+  >
+    <Download className="size-4 mr-1" />
+    Download
+  </Button>
 
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={handlePrintInvoice}
-      >
-        <Download className="size-4 mr-1" />
-        Print
-      </Button>
-    </div>
-  );
+  <Button
+    variant="outline"
+    size="sm"
+    className="border-green-500 text-green-600 hover:bg-green-50"
+    onClick={handlePrintInvoice}
+  >
+    <Printer className="size-4 mr-1" />
+    Print
+  </Button>
+</div>
+  )
 }
