@@ -1,13 +1,43 @@
-import { Card, CardContent } from './ui/card';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { Calendar, User, Car, Building2, Check, X, Eye, FileText, Sparkles } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from './ui/dialog';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Separator } from './ui/separator';
-import { toast } from 'sonner@2.0.3';
-import type { Pesanan, Mobil } from '../lib/data';
-
+import { Card, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import {
+  Calendar,
+  User,
+  Car,
+  Building2,
+  Check,
+  X,
+  Eye,
+  FileText,
+  Sparkles,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogDescription,
+} from "./ui/dialog";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "./ui/tabs";
+import { Separator } from "./ui/separator";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./Table";
+import { toast } from "sonner@2.0.3";
+import { InvoiceGenerator } from "./InvoiceGenerator"; // ← INI BARU!
+import type { Pesanan, Mobil } from "../lib/data";
 interface ManajemenPesananProps {
   pesanans: Pesanan[];
   setPesanans: (pesanans: Pesanan[]) => void;
@@ -480,12 +510,22 @@ function PesananCard({
               Mulai Sewa
             </Button>
           )}
-
-          {pesanan.status === 'ongoing' && (
-            <Button size="sm" className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:shadow-lg transition-all" onClick={onComplete}>
-              Selesaikan
-            </Button>
-          )}
+          {
+  pesanan.status === "ongoing" && (
+    <Button
+      size="sm"
+      className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:shadow-lg transition-all"
+      onClick={onComplete}
+    >
+      Selesaikan
+    </Button>
+  )
+}
+{
+  pesanan.status === "completed" && (
+    <InvoiceGenerator pesanan={pesanan} />
+  )
+}
         </div>
       </CardContent>
     </Card>
